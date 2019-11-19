@@ -16,14 +16,14 @@ const ContatoSchema= new Schema({
         type: String,
         required:true,
     },
-    fotoPerfil{
-        type: Object,
+    fotoPerfil:{
+        type: String,
         required:false,
     },
-    fotoPerfil{
-        type: Date,
+    dataNasci:{
+        type: String,
         required:false,
-    },
+    }
 })
 
 const ContatosCollection = mongoose.model('contato', ContatoSchema)
