@@ -31,7 +31,10 @@ const getNome = (request, response) => {
 // Nesta função o banco retorna apenas o necessario
   const nome = request.params.nome
 
-  contatosCollection.find({ 'nome': nome }, function (error,contatos)  {
+  const regex = new RegExp(nome)
+  const filtro = {nome: regex}
+
+  contatosCollection.find(filtro, function (error,contatos)  {
     //contatosCollection.find( FILTRO , function (error,contatos) 
     if(error){
       return response.status(500).send(error)
@@ -40,10 +43,7 @@ const getNome = (request, response) => {
     }
 
   })
-
 };
-
-
 
 const add = (request, response) => {
 // novo objeto para a nossa coleção
