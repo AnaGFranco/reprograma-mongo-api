@@ -10,9 +10,40 @@ const getAll = (request, response) => {
     return response.status(200).send(contatos)
     }
   })
-
   // response.status(200).send(model.agenda)
 };
+
+
+/*const getNome = (request, response) => {
+  const nome = request.params.nome
+  contatosCollection.find((error,contatos) => {   
+    if(error){
+      return response.status(500).send(error)
+    }else{
+    const pessoa = contatos.filter(pessoa => pessoa.nome === nome)
+      return response.status(200).send(pessoa)
+    }
+  })
+};     Este exemplo não é legal usar pois o banco traz todas as informações para depois ser filtrado*/
+
+
+const getNome = (request, response) => {
+// Nesta função o banco retorna apenas o necessario
+  const nome = request.params.nome
+
+  contatosCollection.find({ 'nome': nome }, function (error,contatos)  {
+    //contatosCollection.find( FILTRO , function (error,contatos) 
+    if(error){
+      return response.status(500).send(error)
+    }else{
+      return response.status(200).send(contatos)
+    }
+
+  })
+
+};
+
+
 
 const add = (request, response) => {
 // novo objeto para a nossa coleção
@@ -46,5 +77,6 @@ const contato = new contatosCollection(contatoDoBody)
 
 module.exports = {
   getAll,
+  getNome,
   add
 }
