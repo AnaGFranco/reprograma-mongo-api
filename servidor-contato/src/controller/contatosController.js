@@ -38,8 +38,12 @@ const getNome = (request, response) => {
     //contatosCollection.find( FILTRO , function (error,contatos) 
     if(error){
       return response.status(500).send(error)
-    }else{
+    }else{      
+      if (contatos.length > 0){
       return response.status(200).send(contatos)
+    } else{
+      return response.status(404).send('Contato nao encontrado')
+    }
     }
 
   })
