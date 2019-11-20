@@ -45,6 +45,25 @@ const getNome = (request, response) => {
   })
 };
 
+const getId = (request, response) => {
+  // Nesta função o banco retorna apenas o necessario
+    const idParam = request.params.id
+  
+    contatosCollection.findById(idParam, function (error,contato)  {
+      //contatosCollection.find( FILTRO , function (error,contatos) 
+      if(error){
+        return response.status(404).send(error)
+      }else{
+        if (contato){
+        return response.status(200).send(contato)
+        } else{
+          return response.status(404).send('Contato nao encontrado')
+        }
+      }
+  
+    })
+  };
+
 const add = (request, response) => {
 // novo objeto para a nossa coleção
 const contatoDoBody = request.body
@@ -78,5 +97,6 @@ const contato = new contatosCollection(contatoDoBody)
 module.exports = {
   getAll,
   getNome,
+  getId,
   add
 }
