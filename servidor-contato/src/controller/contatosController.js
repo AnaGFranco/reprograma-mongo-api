@@ -106,15 +106,16 @@ const alterarById = (request, response) => {
   // novo objeto para a nossa coleção  
   const idParam = request.params.id
   const contatoDoBody = request.body
-  contatosCollection.findByIdAndUpdate(idParam, contatoDoBody, (error,contato) => {
+  const options = {new: true}
+  contatosCollection.findByIdAndUpdate(idParam, contatoDoBody, options, (error,contato) => {
     //contatosCollection.find( FILTRO , function (error,contatos) 
     if(error){
       console.log('Não encontrou')
-      return response.status(404).send(error)
+      return response.status(500).send(error)
     }else{
       if (contato){
         console.log('Criou e salvou')
-        return response.status(200).send(contatoDoBody)
+        return response.status(200).send(contato)
         } else{
           console.log('Não tem')
           return response.status(404).send('Contato nao encontrado')
