@@ -96,10 +96,33 @@ const contato = new contatosCollection(contatoDoBody)
     if(error){
       return response.status(400).send(error)
     }else{
-    return response.status(201).send(contatos)
+    return response.status(201).send(contato)
     }
   })
 }
+
+
+const alterarById = (request, response) => {
+  // novo objeto para a nossa coleção  
+  const idParam = request.params.id
+  const contatoDoBody = request.body
+  contatosCollection.findByIdAndUpdate(idParam, contatoDoBody, (error,contato) => {
+    //contatosCollection.find( FILTRO , function (error,contatos) 
+    if(error){
+      console.log('Não encontrou')
+      return response.status(404).send(error)
+    }else{
+      if (contato){
+        console.log('Criou e salvou')
+        return response.status(200).send(contatoDoBody)
+        } else{
+          console.log('Não tem')
+          return response.status(404).send('Contato nao encontrado')
+        }
+      }
+  })
+
+  }
 
 
 
@@ -122,6 +145,7 @@ module.exports = {
   getAll,
   deleteById,
   getNome,
+  alterarById,
   getId,
   add
 }
