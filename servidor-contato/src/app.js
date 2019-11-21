@@ -1,5 +1,6 @@
 const express = require("express")
 const app = express()
+const bodyParser = require("body-parser") 
 
 const database = require("./model/database")
 database.connect()
@@ -17,6 +18,7 @@ app.use(function (request, response, next) {
   next()
 })
 
+app.use(bodyParser.json())//Middleware -- Fica no meio e executa antes de todas as rotas
 app.use("/", index)
 app.use("/contatos", contatos)
 
