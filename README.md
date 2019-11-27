@@ -9,5 +9,5 @@ Usamos os metodos save() e find() da collection dentro do controller.
 
 Desafio 01: criar um arquivo chamado contatoSchema.js dentro da pasta /model com o Schema dos nossos contatos  
 Desafio 02: incluir campo opcional fotoPerfil  
-Desafio 03: incluir campo obrigatório dataNascimento do tipo Date Desafio  
-04: no metodo add, fazer o banco (schema) retornar um erro caso o usuário com o mesmo nome já exista
+Desafio 03: incluir campo obrigatório dataNascimento do tipo Date  
+Desafio 04: no metodo add, fazer o banco (schema) retornar um erro caso o usuário com o mesmo nome já exista
